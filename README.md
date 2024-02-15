@@ -1,6 +1,6 @@
 # PetShop - 🐾🐱🐶🐟
 
-Esta es una aplicación de ejemplo para una tienda de mascotas construida con Node.js y Express.js para el backend, y utiliza MySQL como base de datos. La aplicación incluye autenticación local utilizando Passport.js.
+Esta es una aplicación, para una tienda de mascotas construida con Node.js y Express.js para el backend, y utiliza MySQL como base de datos. La aplicación incluye autenticación local utilizando Passport.js.
 
 ## Instalación
 
