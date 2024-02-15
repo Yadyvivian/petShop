@@ -51,5 +51,5 @@ Contribuciones
 ¡Disfruta explorando y trabajando con la aplicación de la tienda de mascotas!
 
 Contribuidores iniciales
-Laudy Navarrete
+Laudy Navarrete,
 Viviana Sánchez
