@@ -39,6 +39,7 @@ Para iniciar la aplicación, utiliza el siguiente comando:
 
 ```bash
 npm run server
+ ```
 Esto iniciará el servidor en tu máquina local. Puedes acceder a la aplicación a través de tu navegador web visitando http://localhost:3000.
 
 Problemas y Soluciones
