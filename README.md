@@ -1,6 +1,6 @@
 # PetShop - 🐾🐱🐶🐟
 
-Esta es una aplicación, para una tienda de mascotas construida con Node.js y Express.js para el backend, y utiliza MySQL como base de datos. La aplicación incluye autenticación local utilizando Passport.js.
+Esta es una aplicación para una tienda de mascotas construida con Node.js y Express.js para el backend, y utiliza MySQL como base de datos. La aplicación incluye autenticación local utilizando Passport.js.
 
 ## Instalación
 
@@ -39,7 +39,6 @@ Para iniciar la aplicación, utiliza el siguiente comando:
 
 ```bash
 npm run server
-##
 Esto iniciará el servidor en tu máquina local. Puedes acceder a la aplicación a través de tu navegador web visitando http://localhost:3000.
 
 Problemas y Soluciones
@@ -51,5 +50,5 @@ Contribuciones
 ¡Disfruta explorando y trabajando con la aplicación de la tienda de mascotas!
 
 Contribuidores iniciales
-Laudy Navarrate
+Laudy Navarrete
 Viviana Sánchez
