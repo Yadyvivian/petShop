@@ -1,55 +1,55 @@
 # PetShop - 🐾🐱🐶🐟
 
-Esta es una aplicación para una tienda de mascotas construida con Node.js y Express.js para el backend, y utiliza MySQL como base de datos. La aplicación incluye autenticación local utilizando Passport.js.
+This is an example application for a pet store built with Node.js and Express.js for the backend, using MySQL as the database. The application includes local authentication using Passport.js.
 
-## Instalación
+## Installation
 
-1. Clona este repositorio en tu máquina local:
+1. Clone this repository to your local machine:
 
     ```bash
     git clone https://github.com/Yadyvivian/petShop.git
     ```
 
-2. Ve al directorio del proyecto:
+2. Go to the project directory:
 
     ```bash
     cd petshop
     ```
 
-3. Instala las dependencias utilizando npm:
+3. Install dependencies using npm:
 
     ```bash
     npm i
     ```
 
-4. Configura tu base de datos MySQL. Copia el archivo `petshop.sql` y renómbralo como `.env`. Luego, edita las variables de entorno para configurar la conexión a tu base de datos MySQL en `server.js`:
+4. Configure your MySQL database. Copy the `petshop.sql` file and rename it to `.env`. Then, edit the environment variables to configure the connection to your MySQL database in `server.js`:
 
     ```plaintext
     DB_HOST=localhost
     DB_USER=root
-    DB_PASSWORD=tucontraseña
+    DB_PASSWORD=yourpassword
     DB_DATABASE=petshop
     ```
 
-5. Ejecuta el script SQL proporcionado en tu gestor de base de datos MySQL para crear las tablas necesarias.
+5. Run the provided SQL script in your MySQL database management system to create the necessary tables.
 
-## Uso
+## Usage
 
-Para iniciar la aplicación, utiliza el siguiente comando:
+To start the application, use the following command:
 
 ```bash
 npm run server
  ```
-Esto iniciará el servidor en tu máquina local. Puedes acceder a la aplicación a través de tu navegador web visitando http://localhost:3000.
+This will start the server on your local machine. You can access the application through your web browser by visiting http://localhost:3000.
 
-Problemas y Soluciones
-Si encuentras algún problema durante la instalación o ejecución, asegúrate de haber seguido todos los pasos correctamente y verifica que las dependencias estén instaladas correctamente. Además, revisa los mensajes de error en la consola para obtener más información sobre cualquier problema que pueda surgir.
+Issues and Solutions
+If you encounter any issues during installation or execution, make sure you have followed all the steps correctly and verify that the dependencies are installed correctly. Also, check the error messages in the console for more information on any problems that may arise.
 
-Contribuciones
-¡Las contribuciones son bienvenidas! Si encuentras algún error o tienes sugerencias de mejora, no dudes en abrir un problema o enviar un pull request.
+Contributions
+Contributions are welcome! If you find any bugs or have suggestions for improvement, feel free to open an issue or submit a pull request.
 
-¡Disfruta explorando y trabajando con la aplicación de la tienda de mascotas!
+Enjoy exploring and working with the pet store application!
 
-Contribuidores iniciales
-Laudy Navarrete,
+Initial Contributors
+Laudy Navarrate
 Viviana Sánchez
