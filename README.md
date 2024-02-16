@@ -22,7 +22,7 @@ This is an example application for a pet store built with Node.js and Express.js
     npm i
     ```
 
-4. Configure your MySQL database. Copy the `petshop.sql` file and rename it to `.env`. Then, edit the environment variables to configure the connection to your MySQL database in `server.js`:
+4. Configure your MySQL database. Copy the `petshop.sql` file and rename it to `.env`. Then, edit the environment variables to configure the connection to your MySQL database in cd database open `config.js`:
 
     ```plaintext
     DB_HOST=localhost
