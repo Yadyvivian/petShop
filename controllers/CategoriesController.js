@@ -7,8 +7,10 @@ export const CategoriesController = {
             res.json(categories);
         } catch (error) {
             console.log(error);
+            res.status(500).json({ message: 'Hubo un error al leer la categoria' });
         }
     },
+
     getCategorie: async (req, res) => {
         try {
             const categorieId = req.params.id;
@@ -24,15 +26,19 @@ export const CategoriesController = {
     },
 
     addCategorie: async (req, res) => {
-        const { name, description } = req.body;
-        if (!name || !description ) {
+        try {
+            const { name, description } = req.body;
+            if (!name || !description ) {
             res.status(400).json({ message: 'Por favor introduzca los datos de categoria' });
             return;
         }
         await CategoriesModel.createCategorie(name, description);
         res.status(200).json({ message: 'Creado!' });
         return;
-
+        } catch (error) {
+            console.log(error)
+            res.status(500).json({ message: 'Hubo un error al crear esta categoria' }); 
+        }
     },
 
     updateCategorie: async (req, res) => {
@@ -49,6 +55,7 @@ export const CategoriesController = {
             return;
         } catch (error) {
             console.log(error);
+            res.status(500).json({ message: 'Hubo un error al Actualizar la categoria' });
         }
     },
 
@@ -58,6 +65,7 @@ export const CategoriesController = {
             await CategoriesModel.deleteCategorie(id);
         } catch (error) {
             console.log(error);
+            res.status(500).json({ message: 'Hubo un error al eliminar la categoria' });
         }
     },
 };

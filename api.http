@@ -80,7 +80,7 @@ DELETE http://localhost:3000/products/2
 GET http://localhost:3000/users/
 
 ### Get users por id
-GET http://localhost:3000/users/1
+GET http://localhost:3000/users/2
 
 ### Update  users
 PUT http://localhost:3000/users/2
@@ -109,7 +109,7 @@ Content-Type: application/json
 }
 
 ### Delete users
-DELETE http://localhost:3000/users/1
+DELETE http://localhost:3000/users/5
 
 
 

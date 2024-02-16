@@ -8,14 +8,16 @@ const UsersController = {
             res.json(users);
         } catch (error) {
             console.log(error)
+            res.status(500).json({ message: 'Hubo un error al leer el usuario' });
         }
     },
+    
     getUser: async (req, res) => {
         try {
             const userId = req.params.id;
             const users = await UsersModel.getUser(userId);
             if (!Array.isArray(users) || users.length === 0) {
-                res.status(404).json({ message: `Este usuario con id ${id} no se encuentra` });
+                res.status(404).json({ message: `El usuario con id: ${userId}, no se encuentra` });
                 return;
             }
             res.json(users);
@@ -25,14 +27,19 @@ const UsersController = {
     },
 
     addUser: async (req, res) => {
-        const { first_name, last_name, username, password, email, admin } = req.body;
-        if (!first_name || !last_name || !username || !password || !email || (admin === undefined)) {
+        try {
+            const { first_name, last_name, username, password, email, admin } = req.body;
+            if (!first_name || !last_name || !username || !password || !email || (admin === undefined)) {
             res.status(400).json({ message: 'Por favor introduzca los datos de usuario' });
             return;
         }
         await UsersModel.createUser(first_name, last_name, username, password, email, admin);
         res.status(200).json({ message: 'Creado!' });
         return;
+        } catch (error) {
+            console.log(error)
+            res.status(500).json({ message: 'Hubo un error al crear este usuario' });
+        }  
     },
 
     updateUser: async (req, res) => {
@@ -43,12 +50,13 @@ const UsersController = {
                 res.status(400).json({ message: 'Por favor introduzca los datos de usuario' });
                 return;
             }
-            console.log("ANTES de la vaina");
+            console.log("ANTES de ...");
             await UsersModel.updateUser(id, first_name, last_name, username, password, email, admin);
             res.status(200).json({ message: 'Actualizado!' });
                 return;
         } catch (error) {
             console.log(error)
+            res.status(500).json({ message: 'Hubo un error al Actualizar el usuario' });
         }        
     },
     
@@ -56,8 +64,10 @@ const UsersController = {
         try {
             const id = req.params.id;
             await UsersModel.deleteUser(id);
+            res.status(200).json({ message: 'Usuario eliminado correctamente' });
         } catch (error) {
             console.log(error)
+            res.status(500).json({ message: 'Hubo un error al eliminar el usuario' });
         }
     },
 };

@@ -8,6 +8,7 @@ const ProductsController = {
             res.json(products);
         } catch (error) {
             console.log(error)
+            res.status(500).json({ message: 'Hubo un error al leer el producto' });
         }
     },
     
@@ -26,14 +27,19 @@ const ProductsController = {
     },
 
     addProduct: async (req, res) => {
-        const { name, price, description, image, category, create_date, units_stock } = req.body;
-        if (!name || !price || !description || !image || !category || !create_date || !units_stock) {
+        try {
+            const { name, price, description, image, category, create_date, units_stock } = req.body;
+            if (!name || !price || !description || !image || !category || !create_date || !units_stock) {
             res.status(400).json({ message: 'Por favor introduzca los datos del producto' });
             return;
         }
         await ProductsModel.createProduct(name, price, description, image, category, create_date, units_stock);
         res.status(200).json({ message: 'Creado!' });
         return;
+        } catch (error) {
+            console.log(error)
+            res.status(500).json({ message: 'Hubo un error al crear este producto' });
+        }   
     },
 
     updateProduct: async (req, res) => {
@@ -50,6 +56,7 @@ const ProductsController = {
                 return;
         } catch (error) {
             console.log(error)
+            res.status(500).json({ message: 'Hubo un error al Actualizar el producto' });
         }        
     },
     
@@ -57,8 +64,10 @@ const ProductsController = {
         try {
             const id = req.params.id;
             await ProductsModel.deleteProduct(id);
+            res.status(200).json({ message: 'Producto eliminado correctamente' });
         } catch (error) {
             console.log(error)
+            res.status(500).json({ message: 'Hubo un error al eliminar el producto' });
         }
     },
 };
