@@ -45,9 +45,8 @@ const UsersController = {
             }
             console.log("ANTES de la vaina");
             await UsersModel.updateUser(id, first_name, last_name, username, password, email, admin);
-            res.status(200).json({ message: 'Actualizao!!!' });
+            res.status(200).json({ message: 'Actualizado!' });
                 return;
-            console.log("Despues de la vaina");
         } catch (error) {
             console.log(error)
         }        

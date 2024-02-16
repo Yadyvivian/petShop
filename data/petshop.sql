@@ -12,7 +12,6 @@ CREATE  TABLE  `users` (
   `password` VARCHAR(100) NOT NULL,
   `email` VARCHAR(30) NOT NULL,
   `admin` BOOLEAN NOT NULL,
-  
 PRIMARY KEY (`id`) );
 
 --  orders
@@ -51,8 +50,8 @@ PRIMARY KEY (`id`) );
 --  categories
 CREATE  TABLE  `categories` (
   `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(30) NOT NULL,
   `description` VARCHAR(500) NOT NULL,
-  `type` VARCHAR(30) NOT NULL,
 PRIMARY KEY (`id`) );
 
 --  products categories
