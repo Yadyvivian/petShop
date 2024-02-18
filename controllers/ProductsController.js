@@ -1,4 +1,5 @@
 import ProductsModel from '../models/ProductsModel.js';
+import authenticated from '../session/verifyAuthentication.js';
 
 
 const ProductsController = {
@@ -28,6 +29,7 @@ const ProductsController = {
 
     addProduct: async (req, res) => {
         try {
+            if (!authenticated(req,res)) return;
             const { name, price, description, image, category, create_date, units_stock } = req.body;
             if (!name || !price || !description || !image || !category || !create_date || !units_stock) {
             res.status(400).json({ message: 'Por favor introduzca los datos del producto' });
@@ -44,6 +46,7 @@ const ProductsController = {
 
     updateProduct: async (req, res) => {
         try {
+            if (!authenticated(req,res)) return;
             const id = req.params.id;
             const { name, price, description, image, category, create_date, units_stock } = req.body;
             if (!name || !price || !description || !image || !category || !create_date || !units_stock) {
@@ -62,6 +65,7 @@ const ProductsController = {
     
     deleteProduct: async (req, res) => {
         try {
+            if (!authenticated(req,res)) return;
             const id = req.params.id;
             await ProductsModel.deleteProduct(id);
             res.status(200).json({ message: 'Producto eliminado correctamente' });

@@ -1,17 +1,11 @@
-const verify = {
-
-    verifyAuthentication: (req) => {
-        if (!req.isAuthenticated()) {
-            throw new Error('No tienen permisos para hacer esta acción');
-        }
-    },
-    errorMessage: (res, mensaje, error) => {
-        console.log(error);
-        res.status(500).json({ 
-            message: mensaje,
-            cause: error.message
-        });        
+const authenticated = (req, res) => {
+    if (!req.isAuthenticated()) {
+        res.status(403).json({ 
+            message: 'No tienen permisos para hacer esta acción',
+        });
+        return false;
     }
+    return true;
 }
 
-export default verify;
+export default authenticated;

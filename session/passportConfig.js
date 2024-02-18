@@ -11,7 +11,8 @@ passport.use(new LocalStrategy(
 
         // Verificar si lo encontro
         if (results.length === 0) {
-            return done(null, false, { message: 'Usuario no econtrado' });
+            console.log("Usuario no econtrado");
+            return done(null, false);
           }
     
           const user = results[0];
@@ -21,13 +22,13 @@ passport.use(new LocalStrategy(
           //Verifica contraseña
           if (String(password) !== String(user.password)) {
               console.log("Contraseña incorrecta");
-              return done(null, false, { message: 'Contraseña incorrecta' });
+              return done(null, false);
           }
   
           //verifica si es administrador
           if(user.admin!==1){
-              console.log("No es admin");
-              return done(null, false, { message: 'Usted no es administrador' });
+              console.log("Usted no es administrador");
+              return done(null, false);
           }      
           
           // Autenticación exitosa, devolve el usuario
@@ -35,24 +36,15 @@ passport.use(new LocalStrategy(
     }
 ));
 
-// Para mantener la sesion de usuario
+// Usada cuando se logea exitosamente: Para mantener la sesion de usuario
 // Configurar serialización y deserialización de usuarios para Passport
 passport.serializeUser((user, done) => {
     done(null, user.id);
 });
-  
+
+// Usada para devolver el id del usuario autenticado
 passport.deserializeUser(async (id, done) => {
-
-    const [results, metadata] = await connection.query(`SELECT * FROM users WHERE id = '${id}'`);
-
-    console.log("resultado: " + JSON.stringify(results));
-
-    if (results.length === 0) {
-        return done({ message: 'Usuario no econtrado' }, null);
-    }
-
-    const user = results[0];
-    done(null, user);
+    done(null, id);
 });
 
 export default passport;

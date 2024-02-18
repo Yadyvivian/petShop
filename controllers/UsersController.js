@@ -1,6 +1,6 @@
 import UsersModel from '../models/UsersModel.js';
 import passport from '../session/passportConfig.js';
-import verify from '../session/verifyAuthentication.js';
+import authenticated from '../session/verifyAuthentication.js';
 
 
 const UsersController = {
@@ -30,7 +30,7 @@ const UsersController = {
 
     addUser: async (req, res) => {
         try {
-            verify.verifyAuthentication(req,res);
+            if (!authenticated(req,res)) return;
             const { first_name, last_name, username, password, email, admin } = req.body;
             if (!first_name || !last_name || !username || !password || !email || (admin === undefined)) {
             res.status(400).json({ message: 'Por favor introduzca los datos de usuario' });
@@ -40,20 +40,20 @@ const UsersController = {
         res.status(200).json({ message: 'Creado!' });
         return;
         } catch (error) {
-            verify.errorMessage(res,'Hubo un error al crear este usuario', error);
+            console.log(error);
+            res.status(500).json({ message: 'Hubo un error al crear este usuario'});              
         }  
     },
 
     updateUser: async (req, res) => {
         try {
-            verify.verifyAuthentication(req,res);
+            if (!authenticated(req,res)) return;
             const id = req.params.id;
             const { first_name, last_name, username, password, email, admin } = req.body;
             if (!first_name || !last_name || !username || !password || !email || (admin === undefined)) {
                 res.status(400).json({ message: 'Por favor introduzca los datos de usuario' });
                 return;
             }
-            console.log("ANTES de ...");
             await UsersModel.updateUser(id, first_name, last_name, username, password, email, admin);
             res.status(200).json({ message: 'Actualizado!' });
                 return;
@@ -65,7 +65,7 @@ const UsersController = {
     
     deleteUser: async (req, res) => {
         try {
-            verify.verifyAuthentication(req,res);
+            if (!authenticated(req,res)) return;
             const id = req.params.id;
             await UsersModel.deleteUser(id);
             res.status(200).json({ message: 'Usuario eliminado correctamente' });
@@ -77,25 +77,27 @@ const UsersController = {
     },
 
     login: (req, res, next) => {
-        passport.authenticate('local', (err, user) => {
-            if (err) { return next(err); }
+        passport.authenticate('local', (error, user) => {
+            if (error) { return next(error); }
             if (!user) { 
-                return res.status(401).json({ message: 'Authentication failed' });
+                return res.status(401).json({ message: 'No fue posible autenticar el usuario' });
             }
-            req.logIn(user, (err) => {
-                if (err) { return next(err); }
-                return res.status(200).json({ message: 'Authentication successful', user });
+            // pone usuario encontrado en sesion
+            req.logIn(user, (error) => {
+                if (error) { return next(error); }
+                return res.status(200).json({ message: 'Usuario autenticado exitosamente', user });
             });
         })(req, res, next);
     },
     
 
     logout: (req, res) => {
-        req.logout((err) => {
-            if (err) {
-                return res.status(500).json({ message: 'Error during logout' });
+        //quita usuario de sesion
+        req.logout((error) => {
+            if (error) {
+                return res.status(500).json({ message: 'Error al salir de sesión' });
             }
-            return res.status(200).json({ message: 'Logout successfully done' });
+            return res.status(200).json({ message: 'Sesión terminada exitosamente' });
         });        
     },
 }

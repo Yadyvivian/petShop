@@ -1,4 +1,5 @@
 import CategoriesModel from '../models/CategoriesModel.js';
+import authenticated from '../session/verifyAuthentication.js';
 
 export const CategoriesController = {
     getAllCategories: async (req, res) => {
@@ -27,6 +28,7 @@ export const CategoriesController = {
 
     addCategorie: async (req, res) => {
         try {
+            if (!authenticated(req,res)) return;
             const { name, description } = req.body;
             if (!name || !description ) {
             res.status(400).json({ message: 'Por favor introduzca los datos de categoria' });
@@ -43,6 +45,7 @@ export const CategoriesController = {
 
     updateCategorie: async (req, res) => {
         try {
+            if (!authenticated(req,res)) return;
             const id = req.params.id;
             const { name, description } = req.body;
             if (!name || !description ) {
@@ -61,6 +64,7 @@ export const CategoriesController = {
 
     deleteCategorie: async (req, res) => {
         try {
+            if (!authenticated(req,res)) return;
             const id = req.params.id;
             await CategoriesModel.deleteCategorie(id);
         } catch (error) {
