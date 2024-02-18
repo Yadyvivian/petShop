@@ -2,7 +2,7 @@ import CategoriesModel from '../models/CategoriesModel.js';
 import authenticated from '../session/verifyAuthentication.js';
 
 export const CategoriesController = {
-    getAllCategories: async (req, res) => {
+    getAllCategories: async (req,res) => {
         try {
             const categories = await CategoriesModel.getAllCategories();
             res.json(categories);

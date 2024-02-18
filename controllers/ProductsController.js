@@ -3,7 +3,7 @@ import authenticated from '../session/verifyAuthentication.js';
 
 
 const ProductsController = {
-    getAllProducts: async (req, res) => {
+    getAllProducts: async (req,res) => {
         try {
             const products = await ProductsModel.getAllProducts();
             res.json(products);
