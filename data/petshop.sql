@@ -1,5 +1,5 @@
 --  Crear base de datos
--- CREATE DATABASE `petshop`; 
+CREATE DATABASE `petshop`; 
 
 USE `petshop`; 
 
@@ -63,9 +63,8 @@ CREATE  TABLE  `products_categories` (
   foreign key (`categories_id`) references `categories`(`id`) on delete cascade on update cascade,
 PRIMARY KEY (`id`) );
 
-
-INSERT INTO `users` (`id`, `first_name`, `last_name`, `username`, `password`, `email`, `role`) VALUES
-(1, 'Viviana', 'Sanchez', 'Viviendo', '1234', 'yady.sanchez@gmail.com', 0),
+INSERT INTO `users` (`id`, `first_name`, `last_name`, `username`, `password`, `email`, `admin`) VALUES
+(1, 'Viviana', 'Sanchez', 'Viviendo', '1234', 'yady.sanchez@gmail.com', 1),
 (2, 'Sol', 'Guerra', 'Soles', '12345', 'sol.guerra@gmail.com', 0),
 (3, 'Juan', 'Murillo', 'Juanis', '7891', 'juan.murillo@gmail.com', 0),
 (4, 'Laudy', 'Navarrete', 'Lau', '1234', 'laudy.navarrete@gmail.com', 1),
@@ -76,9 +75,6 @@ INSERT INTO `orders` (`id`, `user_id`, `order_date`, `ammount`) VALUES
 (1, 1, '2024-02-14', 1),
 (2, 2, '2024-02-15', 2),
 (3, 3, '2024-02-15', 2);
---
--- Dumping data for table `products`
---
 
 INSERT INTO `products` (`id`, `name`, `price`, `description`, `image`, `category`, `create_date`, `units_stock`) VALUES
 (1, 'Puppy Food Dry, Kibble', 69.98, 'Formulated to support an appropriate growth rate for large breed puppies. Size: 15KG bag', '', 'Dog', '2024-02-14', 30),
@@ -90,7 +86,6 @@ INSERT INTO `products` (`id`, `name`, `price`, `description`, `image`, `category
 (7, 'Versele laga nature ', 5.55, 'Versele-Laga Nature for hamsters is the food that covers all their nutritional needs and ensures their nutritional well-being.', '', 'Rodent', '2024-02-15', 10),
 (8, 'Tetra Pond Sticks', 33.4, 'Complete and balanced diet for daily feeding of all pond fish.', '', 'Fish', '2024-02-15', 6);
 
--- --------------------------------------------------------
 INSERT INTO `order_details` (`id`, `order_id`, `products_id`, `price`, `quantity`) VALUES
 (1, 1, 1, 209.94, 3);
 
